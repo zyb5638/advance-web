@@ -1,0 +1,23 @@
+/* SearchBar.css */
+.search-bar {
+    /* Custom styles for the search bar to fit the navigation bar's theme */
+    vertical-align: middle; /* Align it vertically */
+    border-radius: 4px; /* Match Ant Design's border radius for other components */
+    border: 1px solid #1890ff; /* Use Ant Design's primary color for the border */
+  }
+  
+  /* You can also target the inner elements of Ant Design's Search component */
+  .search-bar .ant-input-affix-wrapper {
+    border-radius: 4px;
+  }
+  
+  .search-bar .ant-btn-primary {
+    border-color: #1890ff;
+    background-color: #1890ff;
+  }
+  
+  /* If you need to adjust the icon style */
+  .search-bar .ant-input-suffix {
+    color: #1890ff; /* Adjust the color to match the theme */
+  }
+  
