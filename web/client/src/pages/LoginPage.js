@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Form, Input, Button, Typography } from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
-
+import { Form, Input, Button, Typography, Alert } from 'antd';
+import { UserOutlined, LockOutlined } from '@ant-design/icons'; // Import useNavigate
+import { useNavigate } from 'react-router-dom'; 
 function LoginPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(''); // State to hold error message
+  const navigate = useNavigate(); // Hook for navigation
 
   const handleSubmit = async () => {
     try {
@@ -15,13 +17,12 @@ function LoginPage() {
       });
       console.log(response.data);
 
-      // Handle successful login here
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('username', response.data.username);
 
-      // Redirect or update state
+      navigate('/'); // Redirect to the main interface (adjust the path as needed)
     } catch (error) {
-      // Error handling remains the same
+      setError('Login failed. Please check your username and password.'); // Set error message
       console.error('Login error:', error);
     }
   };
@@ -31,6 +32,7 @@ function LoginPage() {
       <Typography.Title level={2} style={{ textAlign: 'center' }}>
         Sign In
       </Typography.Title>
+      {error && <Alert message={error} type="error" showIcon />} {/* Display error message if it exists */}
       <Form onFinish={handleSubmit} style={{ marginTop: 16 }}>
         <Form.Item
           name="username"

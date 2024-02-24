@@ -5,7 +5,7 @@ var router = express.Router();
 var User = require('../models/User'); // Adjust the path according to your structure
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const ADMIN_CODE = "123456"; // 设置一个管理员代码
+const ADMIN_CODE = "123456"; // 
 const authenticate = require('../middleware/authenticate');
 /* POST to register a new user. */
 // routes/users.js
@@ -16,7 +16,7 @@ router.post('/register', async function(req, res, next) {
     
     const existingUser = await User.findOne({ username });
     if (existingUser) {
-      return res.status(400).send('用户名已存在。');
+      return res.status(400).send('exist。');
     }
 
     

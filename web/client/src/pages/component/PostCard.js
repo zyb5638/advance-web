@@ -25,7 +25,7 @@ export const PostCard = ({
   const updatePostAndExitEditMode = async () => {
     await handlePostUpdate(post._id, editedTitle, editedContent);
     setEditMode(false);
-    refreshPosts();// Exit edit mode right after updating
+   // Exit edit mode right after updating
   };
   const convertContentToHTML = (content) => {
     try {

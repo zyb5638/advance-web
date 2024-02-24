@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Form, Input, Button, Typography } from 'antd';
-
+import { useNavigate } from 'react-router-dom'; 
 function RegisterPage() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [adminCode, setAdminCode] = useState('');
-
+  const navigate = useNavigate(); 
   const handleSubmit = async (values) => {
     try {
       // Send the username, email, password, and adminCode to your backend
@@ -17,7 +17,8 @@ function RegisterPage() {
         password: values.password,
         adminCode: values.adminCode, // Assuming your backend handles this
       });
-      console.log(response.data); // Handle the response from the server here
+      console.log(response.data); 
+      navigate('/login'); // Handle the response from the server here
     } catch (error) {
       console.error('Registration failed:', error.response.data); // Error handling
     }

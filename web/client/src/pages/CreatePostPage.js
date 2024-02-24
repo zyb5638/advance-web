@@ -6,6 +6,7 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { UploadOutlined } from '@ant-design/icons';
 import './CreatePostPage.css'; // Assume you have a CSS file for additional styling
 import { stateToHTML } from 'draft-js-export-html';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import { convertFromRaw } from 'draft-js';
 const { Content } = Layout;
 const { Title } = Typography;
@@ -15,7 +16,7 @@ function CreatePostPage() {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const [selectedFile, setSelectedFile] = useState(null);
   const isMounted = useRef(true);
-
+  const navigate = useNavigate(); 
   useEffect(() => () => (isMounted.current = false), []);
 
   const handleSubmit = async () => {
@@ -44,8 +45,10 @@ function CreatePostPage() {
 
       if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
       const result = await response.json();
+      navigate('/'); 
       if (isMounted.current) {
         console.log(result);
+        navigate('/'); 
         message.success('Post created successfully');
       }
     } catch (error) {

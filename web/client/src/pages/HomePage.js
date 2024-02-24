@@ -18,22 +18,11 @@ function HomePage({ searchResults, isSearching }) {
 const forceRefresh = () => {
   setForceUpdate(prev => prev + 1);
 };
-  const refreshPosts = async () => {
-    setIsLoading(true);
-    try {
-      const response = await fetch(`http://localhost:1234/post?page=${page}&limit=10`);
-      const data = await response.json();
+const refreshPosts = async () => {
+  window.location.reload();
+};
 
-      if (data.posts && Array.isArray(data.posts)) {
-        setPosts(data.posts); // Directly set posts to fetched data
-        setHasMore(data.currentPage < data.totalPages);
-      }
-    } catch (error) {
-      console.error('Error fetching posts:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+
 
   useEffect(() => {
     const fetchPosts = async () => {
